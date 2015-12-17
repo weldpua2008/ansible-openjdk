@@ -5,4 +5,4 @@
 #  vars:
 #    freebsd_install_from_ports: True
   roles:
-    - ansible-java
+    - ansible-openjdk

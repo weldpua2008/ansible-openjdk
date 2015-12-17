@@ -1,6 +1,6 @@
-# test file for ansible-java
+# test file for ansible-openjdk
 ---
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-java
+    - ansible-openjdk
