@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure(2) do |config|
+   config.vm.provider "virtualbox" do |vb|
+     # Display the VirtualBox GUI when booting the machine
+     vb.gui = false
+     # Customize the amount of memory on the VM:
+     vb.memory = "368"
+   end
+
+  config.vm.define :precise32 do |precise32|
+    precise32.vm.box = "hashicorp/precise32"
+    precise32.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"      
+    end
+
+  end
+
+
+  config.vm.define :precise64 do |precise64|
+    precise64.vm.box = "hashicorp/precise64"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  config.vm.define :ubuntu_1404_i386 do |precise64|
+    precise64.vm.box = "bento/ubuntu-14.04-i386"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  config.vm.define :ubuntu_1404_x64 do |precise64|
+    precise64.vm.box = "bento/ubuntu-14.04"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+
+  config.vm.define :ubuntu_1504_i386 do |precise64|
+    precise64.vm.box = "bento/ubuntu-15.04-i386"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  config.vm.define :ubuntu_1504_x64 do |precise64|
+    precise64.vm.box = "bento/ubuntu-15.04"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+
+end

@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+    # Customize the amount of memory on the VM:
+    vb.memory = "368"
+  end
+  config.vm.define :opensuse_132_x86_64 do |opensuse132x64|
+    opensuse132x64.vm.box = "bento/opensuse-13.2-x86_64"
+    opensuse132x64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  config.vm.define :opensuse_132_x86_i386 do |opensuse132x32|
+    opensuse132x32.vm.box = "bento/opensuse-13.2-i386"
+    opensuse132x32.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+end
+
+
+

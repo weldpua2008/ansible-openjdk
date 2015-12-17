@@ -1,0 +1,9 @@
+- name: Setup for vagrant boxes
+  hosts: all
+  sudo: yes
+#  remote_user: root
+  gather_facts: true
+  vars:
+    freebsd_install_from_ports: True
+  roles:
+    - ansible-java

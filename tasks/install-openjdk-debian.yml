@@ -1,0 +1,13 @@
+---
+##############################################
+#  Valeriy Solovyov <weldpua2008@gmail.com>
+##############################################
+ - name: Add OpenJDK repository to sources
+   apt_repository: repo='ppa:openjdk-r/ppa' state=present update_cache=yes
+   when: "openjdk_version == 8"
+
+ - name: Installing openjdk-doc
+   apt: name=openjdk-{{ openjdk_version }}-doc state=present update_cache=yes
+
+ - name: Installing openjdk-jdk
+   apt: name=openjdk-{{ openjdk_version }}-jdk state=present update_cache=yes

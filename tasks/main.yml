@@ -1,0 +1,48 @@
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - java
+    - openjdk
+
+- include: install-openjdk-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - java
+    - openjdk
+
+
+- include: install-openjdk-redhat.yml
+#  when: "ansible_os_family == 'Debian'"
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat'
+  tags:
+    - java
+    - openjdk
+#
+#- include: install-fedora.yml
+#  when: ansible_distribution == "Fedora"
+#  tags:
+#    - java
+#
+#- include: install-suse.yml
+#  when: ansible_os_family == 'Suse' or ansible_distribution == 'SLES' or ansible_distribution == 'OES' or ansible_distribution == 'Suse' or ansible_distribution == 'openSUSE'
+##  when: ansible_distribution == 'SLES' or ansible_distribution == 'OES' or ansible_distribution == 'Suse' or ansible_distribution == 'openSUSE'
+#  tags:
+#    - java
+#
+- include: install-openjdk-freebsd.yml
+  when: ansible_os_family == 'FreeBSD' and java_type == 'openjdk'
+  tags:
+    - java
+    - openjdk
+
+- include: install-openjdk-gentoo.yml
+  when: ansible_os_family == 'Gentoo '  and java_type == 'openjdk'
+  tags:
+    - java
+    - openjdk
+
+- name: set JAVA_HOME...
+  template: src=java.sh.j2 dest='/etc/profile.d/java.sh' mode=644
+  tags:
+    - java
+    - openjdk

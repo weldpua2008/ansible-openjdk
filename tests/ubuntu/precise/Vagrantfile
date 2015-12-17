@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.define :precise32 do |precise32|
+    precise32.vm.box = "hashicorp/precise32"
+    precise32.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+
+  end
+
+
+  config.vm.define :precise64 do |precise64|
+    precise64.vm.box = "hashicorp/precise64"
+    precise64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+end
+
+
+

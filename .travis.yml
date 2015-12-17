@@ -1,0 +1,38 @@
+sudo: required
+env:
+  #matrix:
+  - OS_TYPE=centos OS_VERSION=6 ANSIBLE_VERSION=1.9.4
+  # dicabled due error: unpacking of archive failed on file /usr/sbin/suexec: cpio: cap_set_file
+  # See also: https://github.com/docker/docker/issues/6980
+  #- OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
+  - OS_TYPE=ubuntu OS_VERSION=12.04 ANSIBLE_VERSION=1.9.4
+  # disabled due  * The apache2 instance did not start within 20 seconds. Please read the log files to discover problems
+  - OS_TYPE=ubuntu OS_VERSION=14.04 ANSIBLE_VERSION=1.9.4
+  - OS_TYPE=fedora OS_VERSION=22 ANSIBLE_VERSION=1.9.4
+  - OS_TYPE=opensuse OS_VERSION=13.2 ANSIBLE_VERSION=1.9.4
+
+branches:
+  only:
+  - master
+#  - stable
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+#  fixed   E: Package 'lxc-docker' has no installation candidate
+#  - sudo apt-get upgrade lxc-docker
+  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
+  - sudo service docker restart
+  - sleep 5
+  - sudo docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
+
+script:
+ # Run tests in Container
+ - sudo docker run --rm=true -v `pwd`:/ansible-java:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/ansible-openjdk/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
+
+notifications:
+  email: false
+#  hipchat:
+#    rooms:

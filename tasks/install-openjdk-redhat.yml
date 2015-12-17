@@ -1,0 +1,18 @@
+#Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!
+- name: install selinux bindings
+  yum: name=libselinux-python state=present
+
+- name: Install package for Oracle Linux / RHEL / CentOS
+  yum:
+    name={{item}}
+    state=present
+  with_items:
+    - "java-1.{{ openjdk_version }}.0-openjdk"
+
+- name : RHEL install maven and ant
+  yum:
+    name={{item}}
+    state=present
+  with_items:
+    - maven
+    - ant

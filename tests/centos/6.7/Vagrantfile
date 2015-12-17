@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+    # Customize the amount of memory on the VM:
+    vb.memory = "368"
+  end
+  config.vm.define :centos_67_x86_64 do |centos67x64|
+    centos67x64.vm.box = "bento/centos-6.7"
+    centos67x64.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  config.vm.define :centos_67_x86_i386 do |centos67x32|
+    centos67x32.vm.box = "bento/centos-6.7-i386"
+    centos67x32.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+end
+
+
+

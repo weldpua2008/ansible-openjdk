@@ -1,0 +1,56 @@
+---
+galaxy_info:
+  author: "Valeriy Solovyov"
+  description: "Ansible role for installing OpenJDK"
+  license: "MIT"
+  min_ansible_version: 1.6
+  platforms:
+  - name: Amazon
+    versions:
+      - all
+      - any
+  - name: FreeBSD
+    versions:
+      - all
+      - any
+  - name: Ubuntu
+    versions:
+      - all
+      - any
+  - name: Debian
+    versions:
+      - all
+      - any
+  - name: EL
+    versions:
+      - all
+      - any
+#  - name: Fedora
+#    versions:
+#    - all
+#  - name: opensuse
+#    versions:
+#    - all
+  - name: GenericUNIX
+    versions:
+      - all
+      - any
+  - name: GenericLinux
+    versions:
+      - all
+      - any
+#  - name: Gentoo
+#    versions:
+#    - all
+  categories:
+  - development
+  - system
+  - packaging
+  - cloud
+  - web
+  - jvm
+  - java
+  - jdk
+  - openjdk
+
+dependencies: []

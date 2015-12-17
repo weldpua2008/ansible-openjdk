@@ -1,0 +1,12 @@
+# requires Ansible 1.6
+# requires gentoolkit on host
+# https://wiki.gentoo.org/wiki/Java
+
+- name: Install JRE on Gentoo
+  portage:
+    package={{ item }}
+    state=present
+  changed_when: false
+  with_items:
+    - "virtual/jre-1.{{ openjdk_version }}.0"
+#    - "virtual/jdk-1.{{ openjdk_version }}.0"
