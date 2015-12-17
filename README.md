@@ -1,3 +1,6 @@
+[![Ansible Role](https://img.shields.io/ansible/role/6584.svg)](https://galaxy.ansible.com/detail#/role/6584)
+[![Build Status](https://travis-ci.org/weldpua2008/ansible-openjdk.svg?branch=master)](https://travis-ci.org/weldpua2008/ansible-openjdk)
+
 # Ansible Role to install OpenJDK
 
 Manages installation of OpenJDK versions:
