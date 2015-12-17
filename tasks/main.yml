@@ -43,6 +43,7 @@
 
 - name: set JAVA_HOME...
   template: src=java.sh.j2 dest='/etc/profile.d/java.sh' mode=644
+  changed_when: false
   tags:
     - java
     - openjdk

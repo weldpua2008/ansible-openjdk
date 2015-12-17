@@ -9,10 +9,10 @@
   with_items:
     - "java-1.{{ openjdk_version }}.0-openjdk"
 
-- name : RHEL install maven and ant
-  yum:
-    name={{item}}
-    state=present
-  with_items:
-    - maven
-    - ant
+#- name : RHEL install maven and ant
+#  yum:
+#    name={{item}}
+#    state=present
+#  with_items:
+#    - maven
+#    - ant
