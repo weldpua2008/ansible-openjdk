@@ -3,6 +3,6 @@
     name={{item}}
     state=present
   changed_when: false
-   with_items:
+  with_items:
     - "java-1.{{ openjdk_version }}.0-openjdk"
 
