@@ -12,7 +12,7 @@
   ignore_errors: true
   when: ansible_distribution_major_version|int >= 22
 
-  
+
 - name:  Install package for Fedora Linux >= 22
   shell: dnf install {{item}} -y
   changed_when: false

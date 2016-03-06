@@ -2,6 +2,7 @@
   zypper:
     name="{{item}}"
     state=present
+  changed_when: false
   with_items:
     - "java-1.{{ openjdk_version }}.0-openjdk"
-#  changed_when: false
+#
