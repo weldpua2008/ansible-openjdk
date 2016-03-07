@@ -18,5 +18,5 @@
   changed_when: false
   when: ansible_distribution_major_version|int >= 22
   with_items:
-    - "java-1.{{ openjdk_version }}.0-openjdk-headless"
+    - "java-1.8.0-openjdk"
 #    - "java-1.{{ openjdk_version }}.0-openjdk"
