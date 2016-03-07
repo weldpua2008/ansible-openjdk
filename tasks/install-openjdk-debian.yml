@@ -4,10 +4,12 @@
 ##############################################
  - name: Add OpenJDK repository to sources
    apt_repository: repo='ppa:openjdk-r/ppa' state=present update_cache=yes
+   changed_when: false
    when: "openjdk_version == 8"
 
  - name: Installing openjdk-doc
    apt: name=openjdk-{{ openjdk_version }}-doc state=present update_cache=yes cache_valid_time=8600
 
  - name: Installing openjdk-jdk
-   apt: name=openjdk-{{ openjdk_version }}-jdk state=present update_cache=yes
+   apt: name=openjdk-{{ openjdk_version }}-jdk state=present update_cache=yes cache_valid_time=8600
+
